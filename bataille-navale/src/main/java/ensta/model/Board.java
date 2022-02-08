@@ -2,15 +2,51 @@ package ensta.model;
 
 import ensta.model.ship.AbstractShip;
 import ensta.util.Orientation;
+import ensta.util.Frappe;
 
 public class Board implements IBoard {
 
 	private static final int DEFAULT_SIZE = 10;
+	private int size;
 	
-	public Board() {
+	private Frappe[][] charGrid;
+	private boolean[][] boolGrid;
+	
+	private String nom;
+	
+	public Board(String nom, int size) {
+		this.size=size;
+		this.nom = nom;
+	}
+	
+	public Board(String nom) {
+		this.size = DEFAULT_SIZE;
+		this.nom = nom;
 	}
 
 	public void print() {
+		System.out.println("Navires :              Frappes :");
+		
+		//entête
+		System.out.print(" ");
+		for(int i=1;i<=this.size;i++) {
+			System.out.print(i+" ");
+		}
+		System.out.print(" ");
+		for(int i=1;i<=this.size;i++) {
+			System.out.print(i+" ");
+		}
+		System.out.println("");
+
+		//body
+		for(int i=1;i<=this.size;i++) {
+			String nLine = "";
+			String fLine = "";
+			for(int j=1;j<=this.size;j++) {
+				//nLine
+			}
+		}
+		
 	}
 
 	public boolean canPutShip(AbstractShip ship, Coords coords) {
@@ -50,4 +86,44 @@ public class Board implements IBoard {
 
 		return true;
 	}
+
+
+	public int getSize() {
+		return size;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	@Override
+	public boolean putShip(AbstractShip ship, Coords coords) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasShip(Coords coords) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setHit(boolean hit, Coords coords) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Boolean getHit(Coords coords) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hit sendHit(Coords res) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

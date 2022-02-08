@@ -42,8 +42,12 @@ public class Game {
 
 
 			// TODO init boards
+			Board p1Board = new Board("Joueur 1");
+			Board p2Board = new Board("Joueur 2");
 
 			// TODO init this.player1 & this.player2
+			this.player1 = new Player(p1Board, p2Board, null);
+			this.player2 = new Player(p2Board, p1Board, null);
 
 			// TODO place player ships
 		}
