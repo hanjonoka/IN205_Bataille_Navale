@@ -3,12 +3,18 @@ package ensta.model.ship;
 import ensta.util.Orientation;
 
 public class AbstractShip {
-	String name;
-	int Length;
-	Orientation orientation;
 	
-	public AbstractShip() {
-		
+	protected char label;
+	protected String name;
+	protected int length;
+	protected Orientation orientation;
+
+	public AbstractShip(char label, String name, int length, Orientation orientation) {
+		super();
+		this.label = label;
+		this.name = name;
+		this.length = length;
+		this.orientation = orientation;
 	}
 
 	public boolean isSunk() {
@@ -16,20 +22,16 @@ public class AbstractShip {
 		return false;
 	}
 
+	public char getLabel() {
+		return label;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getLength() {
-		return Length;
-	}
-
-	public void setLength(int length) {
-		Length = length;
+		return this.length;
 	}
 
 	public Orientation getOrientation() {
@@ -39,6 +41,4 @@ public class AbstractShip {
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
-
-	
 }
