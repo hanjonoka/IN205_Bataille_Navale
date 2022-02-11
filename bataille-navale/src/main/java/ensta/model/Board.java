@@ -1,5 +1,7 @@
 package ensta.model;
 
+import java.util.Arrays;
+
 import ensta.model.ship.AbstractShip;
 import ensta.util.Orientation;
 import ensta.util.Frappe;
@@ -9,42 +11,57 @@ public class Board implements IBoard {
 	private static final int DEFAULT_SIZE = 10;
 	private int size;
 	
-	private Frappe[][] charGrid;
-	private boolean[][] boolGrid;
+	private Frappe[][] fGrid;
+	private char[][] navGrid;
 	
 	private String nom;
 	
 	public Board(String nom, int size) {
 		this.size=size;
 		this.nom = nom;
+		fGrid = new Frappe[size][size];
+		navGrid = new char[size][size];
+		for(Frappe[] row: fGrid) {
+			Arrays.fill(row, Frappe.DEFAULT);
+		}
+		for(char[] row: navGrid) {
+			Arrays.fill(row, '.');
+		}
 	}
 	
 	public Board(String nom) {
-		this.size = DEFAULT_SIZE;
-		this.nom = nom;
+		this(nom,DEFAULT_SIZE);
 	}
 
 	public void print() {
-		System.out.println("Navires :              Frappes :");
+		System.out.print("Navires :");
+		for(int i=0; i<=2*this.size + 3 - 9;i++) System.out.print(" ");
+		System.out.println("Frappes :");
 		
 		//entête
-		System.out.print(" ");
+		System.out.print("   ");
 		for(int i=1;i<=this.size;i++) {
-			System.out.print(i+" ");
+			System.out.print((char)(i+64)+" ");
 		}
-		System.out.print(" ");
+		System.out.print("    ");
 		for(int i=1;i<=this.size;i++) {
-			System.out.print(i+" ");
+			System.out.print((char)(i+64)+" ");
 		}
 		System.out.println("");
 
 		//body
-		for(int i=1;i<=this.size;i++) {
-			String nLine = "";
-			String fLine = "";
-			for(int j=1;j<=this.size;j++) {
-				//nLine
+		for(int i=0;i<this.size;i++) {
+			System.out.print((i+1) + " ");
+			if(i+1<10) System.out.print(" ");
+			for(int j=0;j<this.size;j++) {
+				System.out.print(navGrid[i][j] + " ");
 			}
+			System.out.print(" " + (i+1) + " ");
+			if(i+1<10) System.out.print(" ");
+			for(int j=0;j<this.size;j++) {
+				System.out.print(fGrid[i][j] + " ");
+			}
+			System.out.println("");
 		}
 		
 	}
