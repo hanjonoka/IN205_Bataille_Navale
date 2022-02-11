@@ -51,12 +51,12 @@ public class Board implements IBoard {
 
 		//body
 		for(int i=0;i<this.size;i++) {
-			System.out.print((i+1) + " ");
+			System.out.print((i) + " ");
 			if(i+1<10) System.out.print(" ");
 			for(int j=0;j<this.size;j++) {
 				System.out.print(navGrid[i][j] + " ");
 			}
-			System.out.print(" " + (i+1) + " ");
+			System.out.print(" " + (i) + " ");
 			if(i+1<10) System.out.print(" ");
 			for(int j=0;j<this.size;j++) {
 				System.out.print(fGrid[i][j] + " ");
@@ -69,6 +69,9 @@ public class Board implements IBoard {
 	public boolean canPutShip(AbstractShip ship, Coords coords) {
 		Orientation o = ship.getOrientation();
 		int dx = 0, dy = 0;
+		if(coords.getX()<0 || coords.getY()<0 || coords.getX()>=this.size || coords.getY()>=this.size) {
+			return false;
+		}
 		if (o == Orientation.EAST) {
 			if (coords.getX() + ship.getLength() >= this.size) {
 				return false;
