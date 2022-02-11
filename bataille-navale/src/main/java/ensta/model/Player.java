@@ -43,6 +43,7 @@ public class Player {
 			String msg = String.format("placer %d : %s(%d)", i + 1, ship.getName(), ship.getLength());
 			System.out.println(msg);
 			InputHelper.ShipInput res = InputHelper.readShipInput();
+			System.out.println("will put ship at " + res.x + "," + res.y + "," +res.orientation);
 			// TODO set ship orientation
 			// TODO put ship at given position
 			// TODO when ship placement successful

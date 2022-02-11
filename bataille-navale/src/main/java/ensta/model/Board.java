@@ -115,14 +115,44 @@ public class Board implements IBoard {
 
 	@Override
 	public boolean putShip(AbstractShip ship, Coords coords) {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.canPutShip(ship, coords)) {
+			switch(ship.getOrientation()) {
+			case EAST:
+				for(int i=0; i<ship.getLength();i++) {
+					navGrid[coords.getY()][coords.getX()+i] = ship.getLabel();					
+				}
+				break;
+			case NORTH:
+				for(int i=0; i<ship.getLength();i++) {
+					navGrid[coords.getY()-i][coords.getX()] = ship.getLabel();					
+				}
+				break;
+			case WEST:
+				for(int i=0; i<ship.getLength();i++) {
+					navGrid[coords.getY()][coords.getX()-i] = ship.getLabel();					
+				}
+				break;
+			case SOUTH:
+				for(int i=0; i<ship.getLength();i++) {
+					navGrid[coords.getY()+i][coords.getX()] = ship.getLabel();					
+				}
+				break;
+			default:
+				return false;
+			}
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean hasShip(Coords coords) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.navGrid[coords.getY()][coords.getX()] != '.';
+	}
+	
+	public char getCase(Coords coords) {
+		return this.navGrid[coords.getY()][coords.getX()];
 	}
 
 	@Override
