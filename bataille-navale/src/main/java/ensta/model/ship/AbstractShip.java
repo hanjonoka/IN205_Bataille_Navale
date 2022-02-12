@@ -8,6 +8,8 @@ public class AbstractShip {
 	protected String name;
 	protected int length;
 	protected Orientation orientation;
+	
+	private int strikeCount = 0;
 
 	public AbstractShip(char label, String name, int length, Orientation orientation) {
 		super();
@@ -18,8 +20,15 @@ public class AbstractShip {
 	}
 
 	public boolean isSunk() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.strikeCount>=this.length;
+	}
+
+	public int getStrikeCount() {
+		return strikeCount;
+	}
+
+	public void addStrike() {
+		this.strikeCount ++;
 	}
 
 	public char getLabel() {

@@ -1,9 +1,13 @@
 package ensta.model;
 import java.util.NoSuchElementException;
 
+import ensta.util.ColorUtil;
+import ensta.util.ColorUtil.Color;
+
 public enum Hit {
-    MISS(-1, "manqué"),
-    STRIKE(-2, "touché"),
+    MISS(-1, ColorUtil.colorize("X", ColorUtil.Color.WHITE)),
+    STRIKE(-2, ColorUtil.colorize("X", ColorUtil.Color.RED)),
+    DEFAULT(0, "."),
     DESTROYER(2, "Frégate"),
     SUBMARINE(3, "Sous-marin"),
     BATTLESHIP(4, "Croiseur"),

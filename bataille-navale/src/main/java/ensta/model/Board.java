@@ -11,21 +11,25 @@ public class Board implements IBoard {
 	private static final int DEFAULT_SIZE = 10;
 	private int size;
 	
-	private Frappe[][] fGrid;
-	private char[][] navGrid;
+	private Hit[][] fGrid;
+	private ShipState[][] navGrid;
 	
 	private String nom;
 	
 	public Board(String nom, int size) {
 		this.size=size;
 		this.nom = nom;
-		fGrid = new Frappe[size][size];
-		navGrid = new char[size][size];
-		for(Frappe[] row: fGrid) {
-			Arrays.fill(row, Frappe.DEFAULT);
+		fGrid = new Hit[size][size];
+		navGrid = new ShipState[size][size];
+		for(Hit[] row: fGrid) {
+			for(int i=0; i<this.size; i++) {
+				row[i] = Hit.DEFAULT;
+			}
 		}
-		for(char[] row: navGrid) {
-			Arrays.fill(row, '.');
+		for(ShipState[] row: navGrid) {
+			for(int i=0; i<this.size; i++){
+				row[i] = new ShipState();
+			}
 		}
 	}
 	
@@ -122,22 +126,22 @@ public class Board implements IBoard {
 			switch(ship.getOrientation()) {
 			case EAST:
 				for(int i=0; i<ship.getLength();i++) {
-					navGrid[coords.getY()][coords.getX()+i] = ship.getLabel();					
+					navGrid[coords.getY()][coords.getX()+i].setShip(ship);
 				}
 				break;
 			case NORTH:
 				for(int i=0; i<ship.getLength();i++) {
-					navGrid[coords.getY()-i][coords.getX()] = ship.getLabel();					
+					navGrid[coords.getY()-i][coords.getX()].setShip(ship);					
 				}
 				break;
 			case WEST:
 				for(int i=0; i<ship.getLength();i++) {
-					navGrid[coords.getY()][coords.getX()-i] = ship.getLabel();					
+					navGrid[coords.getY()][coords.getX()-i].setShip(ship);					
 				}
 				break;
 			case SOUTH:
 				for(int i=0; i<ship.getLength();i++) {
-					navGrid[coords.getY()+i][coords.getX()] = ship.getLabel();					
+					navGrid[coords.getY()+i][coords.getX()].setShip(ship);					
 				}
 				break;
 			default:
@@ -151,11 +155,11 @@ public class Board implements IBoard {
 
 	@Override
 	public boolean hasShip(Coords coords) {
-		return this.navGrid[coords.getY()][coords.getX()] != '.';
+		return this.navGrid[coords.getY()][coords.getX()].getShip() != null;
 	}
 	
 	public char getCase(Coords coords) {
-		return this.navGrid[coords.getY()][coords.getX()];
+		return this.navGrid[coords.getY()][coords.getX()].getShip().getLabel();
 	}
 
 	@Override
