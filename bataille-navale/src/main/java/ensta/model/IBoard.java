@@ -37,9 +37,11 @@ public interface IBoard {
      * @param coords
      * @return true if the hit is successful
      */
-    public Boolean getHit(Coords coords);
+    public Hit getHit(Coords coords);
 
 	public Hit sendHit(Coords res);
+	
+	public ShipState getShipState(Coords coords);
 
 	public boolean canPutShip(AbstractShip ship, Coords coords);
 }

@@ -73,7 +73,7 @@ public class Board implements IBoard {
 	public boolean canPutShip(AbstractShip ship, Coords coords) {
 		Orientation o = ship.getOrientation();
 		int dx = 0, dy = 0;
-		if(coords.getX()<0 || coords.getY()<0 || coords.getX()>=this.size || coords.getY()>=this.size) {
+		if(!coords.isInBoard(size)) {
 			return false;
 		}
 		if (o == Orientation.EAST) {
@@ -172,8 +172,13 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public Boolean getHit(Coords coords) {
-		return this.navGrid[coords.getY()][coords.getX()].isStruck();
+	public Hit getHit(Coords coords) {
+		return this.hitGrid[coords.getY()][coords.getX()];
+	}
+	
+	@Override
+	public ShipState getShipState(Coords coords) {
+		return this.navGrid[coords.getX()][coords.getY()];
 	}
 
 	@Override

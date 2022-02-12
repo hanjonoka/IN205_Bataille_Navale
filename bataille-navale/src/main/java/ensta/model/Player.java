@@ -6,6 +6,7 @@ import java.util.List;
 import ensta.model.ship.AbstractShip;
 import ensta.util.Orientation;
 import ensta.view.InputHelper;
+import ensta.model.Coords;
 
 public class Player {
 	/*
@@ -78,9 +79,9 @@ public class Player {
 		do {
 			System.out.println("où frapper?");
 			InputHelper.CoordInput hitInput = InputHelper.readCoordInput();
+			coords.setCoords(hitInput.x, hitInput.y);
 
-			if(hitInput.x >= 0 && hitInput.y >= 0 && hitInput.x <= opponentBoard.getSize() && hitInput.y <= opponentBoard.getSize()) {
-				coords.setCoords(hitInput.x, hitInput.y);
+			if(coords.isInBoard(board.getSize())) {
 				hit = this.opponentBoard.sendHit(coords);
 				
 				done = true;

@@ -5,25 +5,27 @@ import ensta.util.ColorUtil;
 import ensta.util.ColorUtil.Color;
 
 public enum Hit {
-    MISS(-1, ColorUtil.colorize("X", ColorUtil.Color.WHITE)),
-    STRIKE(-2, ColorUtil.colorize("X", ColorUtil.Color.RED)),
-    DEFAULT(0, "."),
-    DESTROYER(2, "Frégate"),
-    SUBMARINE(3, "Sous-marin"),
-    BATTLESHIP(4, "Croiseur"),
-    CARRIER(5, "Porte-avion");
+    MISS(-1, ColorUtil.colorize("X", ColorUtil.Color.WHITE), "manqué"),
+    STRIKE(-2, ColorUtil.colorize("X", ColorUtil.Color.RED), "touché"),
+    DEFAULT(0, ".", "default"),
+    DESTROYER(2, "F", "Frégate"),
+    SUBMARINE(3, "S", "Sous-marin"),
+    BATTLESHIP(4, "B", "Croiseur"),
+    CARRIER(5, "C", "Porte-avion");
 
     /* ***
      * Attributs
      */
     private int value;
     private String label;
+    private String print;
 
     /* ***
      * Constructeur
      */
-    Hit(int value, String label) {
+    Hit(int value, String print, String label) {
         this.value = value;
+        this.print = print;
         this.label = label;
     }
 
@@ -40,6 +42,10 @@ public enum Hit {
     }
 
     public String toString() {
-        return this.label;
+        return this.print;
     }
+
+	public String getLabel() {
+		return label;
+	}
 };

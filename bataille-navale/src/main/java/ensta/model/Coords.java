@@ -1,5 +1,9 @@
 package ensta.model;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
+
 public class Coords {
 	int x;
 	int y;
@@ -29,13 +33,12 @@ public class Coords {
 	}
 
 	public static Coords randomCoords(int size) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Coords(ThreadLocalRandom.current().nextInt(0,size+1),ThreadLocalRandom.current().nextInt(0,size+1));
 	}
 
 	public boolean isInBoard(int size) {
 		// TODO Auto-generated method stub
-		return false;
+		return (x>=0 && y>=0 && x<size && y<size);
 	}
 
 	public int getX() {

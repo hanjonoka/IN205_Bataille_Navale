@@ -21,33 +21,33 @@ public class TestBoard {
 //		board.putShip(new BattleShip(Orientation.NORTH), new Coords(4,3));
 //		board.putShip(new Carrier(Orientation.WEST), new Coords(6,3));
 		board.print();
-		Player player = new Player(board,board,Arrays.asList(new AbstractShip[] { new Destroyer()})); //, new Submarine(), new Submarine(), new BattleShip(), new Carrier() }));
+		Player player = new Player(board,board,Arrays.asList(new AbstractShip[] { new Destroyer(), new Submarine(), new Submarine(), new BattleShip(), new Carrier() }));
 		player.putShips();
 		
 		Coords coords = new Coords();
 		Hit hit;
 		hit = player.sendHit(coords);
 		System.out.println(hit + " at " + coords);
-		player.getBoard().setHit(player.getOpponentBoard().getHit(coords), coords);;
+		player.getBoard().setHit(player.getOpponentBoard().getShipState(coords).isStruck(), coords);;
 		board.print();
 		
 		hit = player.sendHit(coords);
-		player.getBoard().setHit(player.getOpponentBoard().getHit(coords), coords);;
+		player.getBoard().setHit(player.getOpponentBoard().getShipState(coords).isStruck(), coords);;
 		System.out.println(hit + " at " + coords);
 		board.print();
 
 		hit = player.sendHit(coords);
-		player.getBoard().setHit(player.getOpponentBoard().getHit(coords), coords);;
+		player.getBoard().setHit(player.getOpponentBoard().getShipState(coords).isStruck(), coords);;
 		System.out.println(hit + " at " + coords);
 		board.print();
 
 		hit = player.sendHit(coords);
-		player.getBoard().setHit(player.getOpponentBoard().getHit(coords), coords);;
+		player.getBoard().setHit(player.getOpponentBoard().getShipState(coords).isStruck(), coords);;
 		System.out.println(hit + " at " + coords);
 		board.print();
 
 		hit = player.sendHit(coords);
-		player.getBoard().setHit(player.getOpponentBoard().getHit(coords), coords);;
+		player.getBoard().setHit(player.getOpponentBoard().getShipState(coords).isStruck(), coords);;
 		System.out.println(hit + " at " + coords);
 
 		board.print();
