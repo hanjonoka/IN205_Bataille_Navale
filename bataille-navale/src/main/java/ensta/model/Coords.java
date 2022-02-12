@@ -20,12 +20,12 @@ public class Coords {
 	}
 	
 	public void setCoords(int x, int y) {
-		
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void setCoords(Coords res) {
-		// TODO Auto-generated method stub
-		
+		this.setCoords(res.getX(),res.getY());
 	}
 
 	public static Coords randomCoords(int size) {
@@ -51,6 +51,8 @@ public class Coords {
 		this.y = y;
 	}
 
-
+	public String toString() {
+		return "(" + this.x + "," + this.y + ")";
+	}
 
 }

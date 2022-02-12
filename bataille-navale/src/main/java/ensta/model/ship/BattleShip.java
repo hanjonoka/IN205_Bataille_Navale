@@ -1,5 +1,6 @@
 package ensta.model.ship;
 
+import ensta.model.Hit;
 import ensta.util.Orientation;
 
 public class BattleShip extends AbstractShip{
@@ -13,5 +14,10 @@ public class BattleShip extends AbstractShip{
 
 	public BattleShip() {
 		this('B', "BattleShip", 4, Orientation.EAST);
+	}
+
+	@Override
+	public Hit getHitType() {
+		return Hit.BATTLESHIP;
 	}
 }

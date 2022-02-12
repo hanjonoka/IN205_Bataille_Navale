@@ -1,8 +1,9 @@
 package ensta.model.ship;
 
+import ensta.model.Hit;
 import ensta.util.Orientation;
 
-public class AbstractShip {
+public abstract class AbstractShip {
 	
 	protected char label;
 	protected String name;
@@ -50,4 +51,6 @@ public class AbstractShip {
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
+	
+	abstract public Hit getHitType();
 }

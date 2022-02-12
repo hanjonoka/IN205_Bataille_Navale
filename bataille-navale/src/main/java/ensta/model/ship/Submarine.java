@@ -1,5 +1,6 @@
 package ensta.model.ship;
 
+import ensta.model.Hit;
 import ensta.util.Orientation;
 
 public class Submarine extends AbstractShip {
@@ -13,6 +14,11 @@ public class Submarine extends AbstractShip {
 
 	public Submarine() {
 		this('S', "Submarine", 3, Orientation.EAST);
+	}
+
+	@Override
+	public Hit getHitType() {
+		return Hit.SUBMARINE;
 	}
 
 }

@@ -11,7 +11,7 @@ public class Board implements IBoard {
 	private static final int DEFAULT_SIZE = 10;
 	private int size;
 	
-	private Hit[][] fGrid;
+	private Hit[][] hitGrid;
 	private ShipState[][] navGrid;
 	
 	private String nom;
@@ -19,9 +19,9 @@ public class Board implements IBoard {
 	public Board(String nom, int size) {
 		this.size=size;
 		this.nom = nom;
-		fGrid = new Hit[size][size];
+		hitGrid = new Hit[size][size];
 		navGrid = new ShipState[size][size];
-		for(Hit[] row: fGrid) {
+		for(Hit[] row: hitGrid) {
 			for(int i=0; i<this.size; i++) {
 				row[i] = Hit.DEFAULT;
 			}
@@ -63,7 +63,7 @@ public class Board implements IBoard {
 			System.out.print(" " + (i) + " ");
 			if(i+1<10) System.out.print(" ");
 			for(int j=0;j<this.size;j++) {
-				System.out.print(fGrid[i][j] + " ");
+				System.out.print(hitGrid[i][j] + " ");
 			}
 			System.out.println("");
 		}
@@ -164,20 +164,31 @@ public class Board implements IBoard {
 
 	@Override
 	public void setHit(boolean hit, Coords coords) {
-		// TODO Auto-generated method stub
-		
+		if(hit) {
+			this.hitGrid[coords.getY()][coords.getX()] = Hit.STRIKE;
+		}else {
+			this.hitGrid[coords.getY()][coords.getX()] = Hit.MISS;			
+		}
 	}
 
 	@Override
 	public Boolean getHit(Coords coords) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.navGrid[coords.getY()][coords.getX()].isStruck();
 	}
 
 	@Override
 	public Hit sendHit(Coords res) {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.hasShip(res)) {
+			this.navGrid[res.getY()][res.getX()].addStrike();
+			if(this.navGrid[res.getY()][res.getX()].getShip().isSunk()) {
+				System.out.println(this.navGrid[res.getY()][res.getX()].getShip().getHitType()+" coulé !");
+				return this.navGrid[res.getY()][res.getX()].getShip().getHitType();
+			}else {
+				return Hit.STRIKE;
+			}
+		}else {
+			return Hit.MISS;
+		}
 	}
 	
 }
