@@ -58,6 +58,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+			<configuration>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <mainClass>ensta.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -67,6 +75,14 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+ 			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.4.0</version>
+			<configuration>
+				<mainClass>ensta.Main</mainClass>
+			</configuration>
+		</plugin>
       </plugins>
     </pluginManagement>
   </build>
