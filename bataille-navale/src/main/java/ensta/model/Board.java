@@ -55,12 +55,12 @@ public class Board implements IBoard {
 
 		//body
 		for(int i=0;i<this.size;i++) {
-			System.out.print((i) + " ");
+			System.out.print((i+1) + " ");
 			if(i+1<10) System.out.print(" ");
 			for(int j=0;j<this.size;j++) {
 				System.out.print(navGrid[i][j] + " ");
 			}
-			System.out.print(" " + (i) + " ");
+			System.out.print(" " + (i+1) + " ");
 			if(i+1<10) System.out.print(" ");
 			for(int j=0;j<this.size;j++) {
 				System.out.print(hitGrid[i][j] + " ");
@@ -77,12 +77,12 @@ public class Board implements IBoard {
 			return false;
 		}
 		if (o == Orientation.EAST) {
-			if (coords.getX() + ship.getLength() >= this.size) {
+			if (coords.getX() + ship.getLength() > this.size) {
 				return false;
 			}
 			dx = 1;
 		} else if (o == Orientation.SOUTH) {
-			if (coords.getY() + ship.getLength() >= this.size) {
+			if (coords.getY() + ship.getLength() > this.size) {
 				return false;
 			}
 			dy = 1;

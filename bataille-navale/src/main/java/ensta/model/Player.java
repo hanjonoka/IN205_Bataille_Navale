@@ -105,9 +105,9 @@ public class Player {
 		return ships;
 	}
 
-	public void setShips(AbstractShip[] ships) {
-		this.ships = ships;
-	}
+//	public void setShips(AbstractShip[] ships) {
+//		this.ships = ships;
+//	}
 
 	public Board getBoard() {
 		return board;
